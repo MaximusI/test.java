@@ -1,0 +1,66 @@
+package com.javarush.test.level08.lesson08.task05;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+/* Удалить людей, имеющих одинаковые имена
+Создать словарь (Map<String, String>) занести в него десять записей по принципу «фамилия» - «имя».
+Удалить людей, имеющих одинаковые имена.
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception {
+        removeTheFirstNameDuplicates(createMap());
+    }
+
+    public static HashMap<String, String> createMap()
+    {
+        //Напишите тут ваш код
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("Фамилия","Иван");
+        map.put("Канлныш","Ивар");
+        map.put("Канделаки","Тина");
+        map.put("Цыкало","Александр");
+        map.put("Гребенщиков","Борис");
+
+        map.put("Киркоров","Филипп");
+        map.put("Желязны","Роджер");
+        map.put("Иванов","Роджер");
+        map.put("Тип","Типовой");
+        map.put("Архитип","Типовой");
+
+        return (HashMap) map;
+    }
+
+    public static void removeTheFirstNameDuplicates(HashMap<String, String> map)
+    {
+        //Напишите тут ваш код
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        ArrayList<String> buff = new ArrayList<String>();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Map.Entry<String,String> pair = iterator.next();
+            String value = pair.getValue();
+            buff.add(value);
+            for (i = 0; i < map.size(); i++) {
+
+            }
+//            if (map.values().contains()  ???))
+                removeItemFromMapByValue(map, value);
+        }
+
+    }
+
+    public static void removeItemFromMapByValue(HashMap<String, String> map, String value)
+    {
+        HashMap<String, String> copy = new HashMap<String, String>(map);
+        for (Map.Entry<String, String> pair: copy.entrySet())
+        {
+            if (pair.getValue().equals(value))
+                map.remove(pair.getKey());
+        }
+    }
+}
